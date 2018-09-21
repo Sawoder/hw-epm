@@ -62,7 +62,7 @@ public class TrafficLight {
             currentSignal = Signal.RED;
         } else if (remainder < Signal.RED.getDuration() + Signal.YELLOW.getDuration()) {
             currentSignal = Signal.YELLOW;
-        } else {
+        } else if (remainder < Signal.RED.getDuration() + Signal.YELLOW.getDuration() + Signal.GREEN.getDuration()){
             currentSignal = Signal.GREEN;
         }
     }

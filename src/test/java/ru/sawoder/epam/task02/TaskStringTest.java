@@ -33,4 +33,11 @@ public class TaskStringTest {
     public void swapSecondAndFifthChar_CheckSwap() {
         Assert.assertEquals("ACBbacDDDhe", taskString.swapSecondAndFifthChar());
     }
+
+    @Test
+    public void reverseEachWord_CheckReverse() {
+        Assert.assertEquals("ehDDDcCbBaA", taskString.reverseEachWord());
+        taskString.setTask("Moscow is the Capital of Russia");
+        Assert.assertEquals("wocsoM si eht latipaC fo aissuR", taskString.reverseEachWord());
+    }
 }

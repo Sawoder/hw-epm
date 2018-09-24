@@ -1,5 +1,7 @@
 package ru.sawoder.epam.task02;
 
+import java.util.ArrayList;
+
 /**
  * TaskString description.
  *
@@ -75,5 +77,19 @@ public class TaskString {
         String s2 = task.substring(2, 4);
         String s3 = task.substring(5);
         return s1 + task.charAt(4) + s2 + task.charAt(1) + s3;
+    }
+
+    /**
+     * Home Work
+     * @return reversed each word in the string
+     */
+    public String reverseEachWord() {
+        String[] strings = task.split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < strings.length; i++) {
+            sb.append(new StringBuilder(strings[i]).reverse());
+            sb.append(" ");
+        }
+        return sb.toString().trim();
     }
 }

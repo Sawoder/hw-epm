@@ -73,10 +73,11 @@ public class TaskString {
      * @return new string with swapped second and fifth element
      */
     public String swapSecondAndFifthChar() {
-        String s1 = task.substring(0, 1);
-        String s2 = task.substring(2, 4);
-        String s3 = task.substring(5);
-        return s1 + task.charAt(4) + s2 + task.charAt(1) + s3;
+        char[] chars = task.toCharArray();
+        char tmp = chars[1];
+        chars[1] = chars[4];
+        chars[4] = tmp;
+        return new String(chars);
     }
 
     /**

@@ -92,4 +92,13 @@ public class TaskString {
         }
         return sb.toString().trim();
     }
+
+    /**
+     * Home Work
+     *
+     * @return reverse string
+     */
+    public String reverseString() {
+        return new StringBuilder(task).reverse().toString();
+    }
 }

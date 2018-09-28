@@ -30,7 +30,7 @@ public class TrafficLight {
      * @throws  IllegalArgumentException
      *          If the {@code currentMinute} argument is less than 0.
      */
-    public void setCurrentMinute(int currentMinute) throws IllegalArgumentException {
+    public void setCurrentMinute(int currentMinute) {
         if (currentMinute < 0) {
             throw new IllegalArgumentException("the current minute can't be less than 0");
         }

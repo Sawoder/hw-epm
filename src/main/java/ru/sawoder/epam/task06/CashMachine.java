@@ -35,11 +35,13 @@ public class CashMachine implements Runnable {
         PaymentSystem paymentSystem = PaymentSystem.getInstance();
         for (int i = 0; i < times; i++) {
             BigDecimal money = generateRandomBigDecimalFromRange(BigDecimal.ONE, BigDecimal.valueOf(100L));
-            if (paymentSystem.withdraw(money)) {
-                System.out.println("Person has withdrawn " + money + " from ATM #" + id + " and now has " + paymentSystem.getWallet());
-            } else {
-                BigDecimal deposited = paymentSystem.deposit(money);
-                System.out.println("Person has deposited " + money + " to ATM #" + id + " and now has " + deposited);
+            synchronized (PaymentSystem.class) {
+                if (paymentSystem.withdraw(money)) {
+                    System.out.println("Person has withdrawn " + money + " from ATM #" + id + " and now has " + paymentSystem.getWallet());
+                } else {
+                    BigDecimal deposited = paymentSystem.deposit(money);
+                    System.out.println("Person has deposited " + money + " to ATM #" + id + " and now has " + deposited);
+                }
             }
             try {
                 Thread.sleep(100);

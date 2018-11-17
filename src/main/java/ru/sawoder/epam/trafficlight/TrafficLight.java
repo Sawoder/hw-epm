@@ -1,4 +1,4 @@
-package ru.sawoder.epam.task01;
+package ru.sawoder.epam.trafficlight;
 
 /**
  * Specifies the signal color for a certain minute.

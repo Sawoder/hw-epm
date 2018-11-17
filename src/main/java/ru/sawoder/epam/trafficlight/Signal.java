@@ -1,4 +1,4 @@
-package ru.sawoder.epam.task01;
+package ru.sawoder.epam.trafficlight;
 
 /**
  * Enum type for signals of {@link TrafficLight}.

@@ -1,4 +1,4 @@
-package ru.sawoder.epam.task01;
+package ru.sawoder.epam.trafficlight;
 
 import org.junit.Assert;
 import org.junit.Test;

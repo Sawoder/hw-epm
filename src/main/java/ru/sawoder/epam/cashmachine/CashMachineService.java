@@ -1,4 +1,4 @@
-package ru.sawoder.epam.task06;
+package ru.sawoder.epam.cashmachine;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;

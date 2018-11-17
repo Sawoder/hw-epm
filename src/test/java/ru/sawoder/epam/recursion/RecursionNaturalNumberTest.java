@@ -1,4 +1,4 @@
-package ru.sawoder.epam.task04;
+package ru.sawoder.epam.recursion;
 
 import org.junit.Before;
 import org.junit.Test;

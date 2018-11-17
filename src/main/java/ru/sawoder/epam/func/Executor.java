@@ -1,4 +1,4 @@
-package ru.sawoder.epam.task05;
+package ru.sawoder.epam.func;
 
 @FunctionalInterface
 public interface Executor<T extends Number> {

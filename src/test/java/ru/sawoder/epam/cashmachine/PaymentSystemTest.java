@@ -1,4 +1,4 @@
-package ru.sawoder.epam.task06;
+package ru.sawoder.epam.cashmachine;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package ru.sawoder.epam.task02;
+package ru.sawoder.epam.strings;
 
 import org.junit.Assert;
 import org.junit.Before;

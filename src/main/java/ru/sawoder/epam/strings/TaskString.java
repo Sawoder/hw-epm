@@ -1,6 +1,4 @@
-package ru.sawoder.epam.task02;
-
-import java.util.ArrayList;
+package ru.sawoder.epam.strings;
 
 /**
  * TaskString description.

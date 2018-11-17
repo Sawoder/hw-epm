@@ -1,4 +1,4 @@
-package ru.sawoder.epam.task03;
+package ru.sawoder.epam.matrix;
 
 import org.junit.Before;
 import org.junit.Test;

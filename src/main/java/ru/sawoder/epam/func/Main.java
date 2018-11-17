@@ -1,7 +1,7 @@
-package ru.sawoder.epam.task05;
+package ru.sawoder.epam.func;
 
 /**
- * Main description.
+ * CashMachineService description.
  *
  * @author Ilya Lebedev
  * @version 1.0

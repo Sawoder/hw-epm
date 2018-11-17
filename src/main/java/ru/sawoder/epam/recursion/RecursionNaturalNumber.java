@@ -1,4 +1,4 @@
-package ru.sawoder.epam.task04;
+package ru.sawoder.epam.recursion;
 
 /**
  * For finds decisions functions using recursion for natural numbers.

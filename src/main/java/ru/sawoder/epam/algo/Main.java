@@ -1,9 +1,7 @@
 package ru.sawoder.epam.algo;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.stream.IntStream;
 
 /**
@@ -14,18 +12,36 @@ import java.util.stream.IntStream;
  * @since 1.8
  */
 public class Main {
-    public static void main(String[] args) {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            String[] strings = reader.readLine().split(" ");
-            int[] tmp = Arrays.asList(strings).stream().mapToInt(Integer::parseInt).toArray();
-            Integer[] targetArray = IntStream.of(tmp).boxed().toArray(Integer[]::new);
-
-            BinarySearch binarySearch = new BinarySearch();
-            System.out.print("Element for find: ");
-            int element = Integer.parseInt(reader.readLine());
-            System.out.println("Element has index: " + binarySearch.search(element, targetArray));
-        } catch (IOException e) {
-            e.printStackTrace();
+    public static void main(String[] args) {final int size = 100;
+        for (Sort s : initSorts()) {
+            int[] randomArray = getRandomArray(size);
+            System.out.println("Random array");
+            System.out.println(Arrays.toString(randomArray));
+            s.sort(randomArray);
+            System.out.println("Sorted array");
+            System.out.println(Arrays.toString(randomArray));
         }
+        System.out.println();
+
+        int[] array = getRandomArray(size);
+        Integer element = array[0];
+        new QuickSort().sort(array);
+        Integer[] targetArray = IntStream.of(array).boxed().toArray(Integer[]::new);
+        BinarySearch binarySearch = new BinarySearch();
+        System.out.println("Element " + element + " has index: " + binarySearch.search(element, targetArray));
+        System.out.println(Arrays.toString(array));
+    }
+
+    private static Sort[] initSorts() {
+        return new Sort[] {
+                new BubbleSort(),
+                new MergeSort(),
+                new RadixSort(),
+                new QuickSort()
+        };
+    }
+
+    private static int[] getRandomArray(int size) {
+        return new Random().ints(size, 0,1000).toArray();
     }
 }

@@ -73,76 +73,102 @@ public class Game {
                 for (ShipType type : ShipType.values()) {
                     for (int count = 0; count < type.getCount(); count++) {
                         Ship ship = factory.create(type);
-                        try {
-                            if (isPlayer[i]) {
-                                System.out.println(type.toString() + " #" + (count + 1));
-                                System.out.println("X Y Z");
-                                String[] tmpCoords = reader.readLine().split(" ");
-                                System.out.println("Direction (x | y | z)");
-                                Direction direction = Direction.getDirectionByString(reader.readLine());
-                                ship.initCoordinates(Integer.parseInt(tmpCoords[0]),
-                                        Integer.parseInt(tmpCoords[1]),
-                                        Integer.parseInt(tmpCoords[2]),
-                                        direction);
-
-                            } else {
-                                int[] randomCoords = getRandomCoordinates(boards[i].getSize());
-                                ship.initCoordinates(randomCoords[0],
-                                        randomCoords[1],
-                                        randomCoords[2],
-                                        getRandomDirection());
-                            }
-                            boards[i].addShip(ship);
-                            if (isPlayer[i]) {
-                                boards[i].printBoard();
-                            }
-                        } catch (NumberFormatException | DirectionFormatException | ArrayIndexOutOfBoundsException
-                                | ShipCollisionException | ShipOutOfBoundsException e) {
-                            if (isPlayer[i]) {
-                                System.err.println(e.getMessage());
-                            }
-                            count--;
-                        }
+                        count = setupShip(reader, i, type, count, ship);
                     }
                 }
             }
             System.out.println();
-            boolean isFinish = false;
-            while (!isFinish) {
-                for (int i = 0; i < boards.length; i++) {
-                    if (controllers[i].getEnemyAliveShips() == 0) {
-                        isFinish = true;
-                        break;
-                    }
-                    System.out.println("ENEMY SHIPS REMAINING = " + controllers[i].getEnemyAliveShips());
-                    if (isPlayer[i]) {
-                        System.out.println("ATTACK X Y Z");
-                        String[] tmpCoords = reader.readLine().split(" ");
-                        try {
-                            if (controllers[i].attack(Integer.parseInt(tmpCoords[0]),
-                                    Integer.parseInt(tmpCoords[1]),
-                                    Integer.parseInt(tmpCoords[2]))) {
-                                i--;
-                                continue;
-                            }
-                        System.out.println("PRESS BUTTON FOR NEXT PLAYER");
-                        reader.readLine();
-                        } catch (NumberFormatException | ArrayIndexOutOfBoundsException | IOException e) {
-                            System.err.println(e.getMessage());
-                            i--;
-                        }
-                    } else {
-                        System.out.println("COMPUTER ATTACK");
-                        int[] randomCoords = getRandomCoordinates(boards[i].getSize());
-                        if (controllers[i].attack(randomCoords[0], randomCoords[1], randomCoords[2])) {
-                            i--;
-                        }
-                    }
-                }
-            }
+            attackLoop(reader);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Attack stage
+     *
+     * @param reader for reading from console
+     * @throws IOException throws by BufferedReader
+     */
+    private void attackLoop(BufferedReader reader) throws IOException {
+        boolean isFinish = false;
+        while (!isFinish) {
+            for (int i = 0; i < boards.length; i++) {
+                if (controllers[i].getEnemyAliveShips() == 0) {
+                    isFinish = true;
+                    break;
+                }
+                System.out.println("ENEMY SHIPS REMAINING = " + controllers[i].getEnemyAliveShips());
+                if (isPlayer[i]) {
+                    System.out.println("ATTACK X Y Z");
+                    String[] tmpCoords = reader.readLine().split(" ");
+                    try {
+                        if (controllers[i].attack(Integer.parseInt(tmpCoords[0]),
+                                Integer.parseInt(tmpCoords[1]),
+                                Integer.parseInt(tmpCoords[2]))) {
+                            i--;
+                            continue;
+                        }
+                    System.out.println("PRESS BUTTON FOR NEXT PLAYER");
+                    reader.readLine();
+                    } catch (NumberFormatException | ArrayIndexOutOfBoundsException | IOException e) {
+                        System.err.println(e.getMessage());
+                        i--;
+                    }
+                } else {
+                    System.out.println("COMPUTER ATTACK");
+                    int[] randomCoords = getRandomCoordinates(boards[i].getSize());
+                    if (controllers[i].attack(randomCoords[0], randomCoords[1], randomCoords[2])) {
+                        i--;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Setup ship on the board
+     *
+     * @param reader for reading from console
+     * @param i index of player
+     * @param type type for creating ship
+     * @param count number of ship
+     * @param ship empty ship
+     * @return count for loop control
+     * @throws IOException throws by BufferedReader
+     */
+    private int setupShip(BufferedReader reader, int i, ShipType type, int count, Ship ship) throws IOException {
+        try {
+            if (isPlayer[i]) {
+                System.out.println(type.toString() + " #" + (count + 1));
+                System.out.println("X Y Z");
+                String[] tmpCoords = reader.readLine().split(" ");
+                System.out.println("Direction (x | y | z)");
+                Direction direction = Direction.getDirectionByString(reader.readLine());
+                ship.initCoordinates(Integer.parseInt(tmpCoords[0]),
+                        Integer.parseInt(tmpCoords[1]),
+                        Integer.parseInt(tmpCoords[2]),
+                        direction);
+
+            } else {
+                int[] randomCoords = getRandomCoordinates(boards[i].getSize());
+                ship.initCoordinates(randomCoords[0],
+                        randomCoords[1],
+                        randomCoords[2],
+                        getRandomDirection());
+            }
+            boards[i].addShip(ship);
+            if (isPlayer[i]) {
+                boards[i].printBoard();
+            }
+        } catch (NumberFormatException | DirectionFormatException | ArrayIndexOutOfBoundsException
+                | ShipCollisionException | ShipOutOfBoundsException e) {
+            if (isPlayer[i]) {
+                System.err.println(e.getMessage());
+            }
+            count--;
+        }
+        return count;
     }
 
     /**

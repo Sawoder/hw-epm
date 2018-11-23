@@ -1,18 +1,29 @@
 package ru.sawoder.epam.algo;
 
 /**
- * MergeSort description.
+ * MergeSort.
  *
  * @author Ilya Lebedev
  * @version 1.0
  * @since 1.8
  */
 public class MergeSort implements Sort {
+    /**
+     * Invoke {@link MergeSort#mergeSort(int[], int, int)} with full array.
+     * @param arr input array
+     */
     @Override
     public void sort(int[] arr) {
         mergeSort(arr, 0, arr.length - 1);
     }
 
+    /**
+     * Method combines two arrays in such a way that the result is a single sort array
+     * @param arr input array
+     * @param l left index
+     * @param m middle index
+     * @param r right index
+     */
     void merge(int arr[], int l, int m, int r)
     {
         int i, j, k;
@@ -55,6 +66,10 @@ public class MergeSort implements Sort {
         }
     }
 
+    /**
+     * Method divide array to two part
+     * @param arr input array
+     */
     void mergeSort(int arr[], int l, int r) {
         if (l < r) {
             int m = l + (r - l) / 2;

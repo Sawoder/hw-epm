@@ -3,13 +3,17 @@ package ru.sawoder.epam.algo;
 import java.util.Arrays;
 
 /**
- * RadixSort description.
+ * RadixSort.
  *
  * @author Ilya Lebedev
  * @version 1.0
  * @since 1.8
  */
 public class RadixSort implements Sort {
+    /**
+     * This method sorts an array comparing the individual digits
+     * @param arr input array
+     */
     @Override
     public void sort(int[] arr) {
         int m = getMax(arr);
@@ -18,6 +22,11 @@ public class RadixSort implements Sort {
         }
     }
 
+    /**
+     * Gets max element from array
+     * @param arr input array
+     * @return max element
+     */
     private int getMax(int arr[]) {
         int mx = arr[0];
         for (int i = 1; i < arr.length; i++) {
@@ -28,6 +37,11 @@ public class RadixSort implements Sort {
         return mx;
     }
 
+    /**
+     * Count digits from array
+     * @param arr input array
+     * @param exp divider
+     */
     private void countSort(int arr[], int exp) {
         int n = arr.length;
         int output[] = new int[n];

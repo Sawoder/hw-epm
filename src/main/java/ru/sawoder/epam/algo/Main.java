@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.stream.IntStream;
 
 /**
- * Main for using {@link BinarySearch}.
+ * Main for using {@link BinarySearch} and {@link Sort} implementation.
  *
  * @author Ilya Lebedev
  * @version 1.0
